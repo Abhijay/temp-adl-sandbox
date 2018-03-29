@@ -1,0 +1,87 @@
+archetype (adl_version=2.0.6; rm_release=0.0.1)
+CIMI-CORE-oncology.BreastSite.v1.0.0
+
+specialize
+CIMI-CORE-entity.AnatomicalLocation.v1
+
+language
+  original_language = <[ISO_639-1::en]>
+
+description
+  original_author = <
+    ["name"] = <"Mark Kramer">
+    ["organisation"] = <"The MITRE Corporation">
+    ["email"] = <"mkramer@mitre.org">
+    ["date"] = <"3/29/2018">
+  >
+  details = <
+    ["en"] = <
+      language = <[ISO_639-1::en]>
+      purpose = <"SHR implementation of ASCO requirements.">
+      use = <"SHR implementation of ASCO requirements.">
+      keywords = <"oncology","breast site">
+    >
+  >
+  lifecycle_state = <"initial">
+  other_contributors = <"Rute Batiste <rbatiste@mitre.org>, Chris Moesel <cmoesel@mitre.org>, Abhijay Bhatnagar <abhatnagar@mitre.org>, Michael O'Keefe <mokeefe@mitre.org>">
+  custodian_organisation = <"The HL7 Cancer Interoperability Group sponsored by Clinical Interoperability Council Work Group (CIC).">
+  licence = <"Creative Commons CC-BY <https://creativecommons.org/licenses/by/3.0/>">
+  copyright = <"Copyright (c) The MITRE Organization <http://mitre.org>">
+
+definition
+  BreastSite[id1.1.1.1] matches {
+    clockDirection matches {
+      CodeableConcept[id0.0.0.1]
+    }
+    distanceToNipple matches {
+      Quantity[id0.0.0.2]
+    }
+    laterality matches {
+      /Laterality matches {[ac0.0.0.1]}
+    }
+    directionality existence matches {0..0} matches {
+      CodeableConcept[id0.0.0.1] matches {0..0}
+    }
+    portionTotality existence matches {0..0} matches {
+      CodeableConcept[id0.0.0.1] matches {0..0}
+    }
+    codeableConcept matches {
+      /CodeableConcept matches {[ac0.0.0.2]}
+    }
+  }
+
+terminology
+  term_definitions = <
+    ["en"] = <
+      [id1.1.1.1] = <
+        text = <"BreastSite">
+        description = <"A body site specific to the breast structure.">
+      >
+      [id0.0.0.1] = <
+        text = <"CodeableConcept">
+        description = <"A set of codes drawn from different coding systems, representing the same concept.">
+      >
+      [id0.0.0.2] = <
+        text = <"Quantity">
+        description = <"A quantity with units, whose value may be bounded from above or below, as defined in FHIR.
+                      
+                      This definition is not fully consistent with CIMI V0.0.4 (whose definition of Quantity lacks a comparator, but includes numerical precision). Complex data types that appear frequently in FHIR have not been profiled, even if CIMI defines them differently. This choice means that the breast cancer profiles use the native FHIR datatype, rather than having to substitute a CIMI profile everywhere the native type is used.">
+      >
+      [ac0.0.0.1] = <
+        text = <"http://hl7.org/fhir/us/breastcancer/oncology/vs/LeftRightLateralityVS">
+        description = <"-">
+      >
+      [ac0.0.0.2] = <
+        text = <"http://hl7.org/fhir/us/breastcancer/oncology/vs/BreastSiteVS">
+        description = <"-">
+      >
+    >
+  >
+  term_bindings = <
+    ["snomed-ct"] = <
+      items = <
+      [id0.0.0.1] = <http://hl7.org/fhir/us/breastcancer/oncology/vs/LeftRightLateralityVS>
+      [id0.0.0.2] = <http://hl7.org/fhir/us/breastcancer/oncology/vs/BreastSiteVS>
+      >
+    >
+  >

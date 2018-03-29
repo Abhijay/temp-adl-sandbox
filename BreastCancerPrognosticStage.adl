@@ -1,0 +1,80 @@
+archetype (adl_version=2.0.6; rm_release=0.0.1)
+CIMI-CORE-oncology.BreastCancerPrognosticStage.v1.0.0
+
+specialize
+CIMI-CORE-finding.EvaluationResultRecorded.v1
+
+language
+  original_language = <[ISO_639-1::en]>
+
+description
+  original_author = <
+    ["name"] = <"Mark Kramer">
+    ["organisation"] = <"The MITRE Corporation">
+    ["email"] = <"mkramer@mitre.org">
+    ["date"] = <"3/29/2018">
+  >
+  details = <
+    ["en"] = <
+      language = <[ISO_639-1::en]>
+      purpose = <"SHR implementation of ASCO requirements.">
+      use = <"SHR implementation of ASCO requirements.">
+      keywords = <"oncology","breast cancer prognostic stage">
+    >
+  >
+  lifecycle_state = <"initial">
+  other_contributors = <"Rute Batiste <rbatiste@mitre.org>, Chris Moesel <cmoesel@mitre.org>, Abhijay Bhatnagar <abhatnagar@mitre.org>, Michael O'Keefe <mokeefe@mitre.org>">
+  custodian_organisation = <"The HL7 Cancer Interoperability Group sponsored by Clinical Interoperability Council Work Group (CIC).">
+  licence = <"Creative Commons CC-BY <https://creativecommons.org/licenses/by/3.0/>">
+  copyright = <"Copyright (c) The MITRE Organization <http://mitre.org>">
+
+definition
+  BreastCancerPrognosticStage[id1.1.1.1.1.1] matches {
+    stageTimingPrefix matches {
+      CodeableConcept[id0.0.0.0.0.1]
+    }
+    findingMethod existence matches {1..1} matches {
+      CodeableConcept[id0.0.0.0.0.1] matches {1..1},/FindingMethod matches {[ac0.0.0.0.0.1]}
+    }
+    stageTimingPrefix matches {
+      /StageTimingPrefix matches {[ac0.0.0.0.0.2]}
+    }
+    codeableConcept existence matches {1..1} matches {
+      /CodeableConcept matches {[ac0.0.0.0.0.3]}
+    }
+  }
+
+terminology
+  term_definitions = <
+    ["en"] = <
+      [id1.1.1.1.1.1] = <
+        text = <"BreastCancerPrognosticStage">
+        description = <"The prognostic stage of a breast cancer, assessed according to the standard established by American Joint Committee on Cancer (AJCC). Only the prognostic stage is used in US and Canada.">
+      >
+      [id0.0.0.0.0.1] = <
+        text = <"CodeableConcept">
+        description = <"A set of codes drawn from different coding systems, representing the same concept.">
+      >
+      [ac0.0.0.0.0.1] = <
+        text = <"http://hl7.org/fhir/us/breastcancer/oncology/vs/StagingMethodVS">
+        description = <"-">
+      >
+      [ac0.0.0.0.0.2] = <
+        text = <"http://hl7.org/fhir/us/breastcancer/oncology/vs/StageTimingPrefixVS">
+        description = <"-">
+      >
+      [ac0.0.0.0.0.3] = <
+        text = <"http://hl7.org/fhir/us/breastcancer/oncology/vs/BreastCancerStageVS">
+        description = <"-">
+      >
+    >
+  >
+  term_bindings = <
+    ["snomed-ct"] = <
+      items = <
+      [id0.0.0.0.0.1] = <http://hl7.org/fhir/us/breastcancer/oncology/vs/StagingMethodVS>
+      [id0.0.0.0.0.2] = <http://hl7.org/fhir/us/breastcancer/oncology/vs/StageTimingPrefixVS>
+      [id0.0.0.0.0.3] = <http://hl7.org/fhir/us/breastcancer/oncology/vs/BreastCancerStageVS>
+      >
+    >
+  >
